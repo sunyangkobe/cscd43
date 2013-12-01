@@ -1,0 +1,21 @@
+-- Fixed Bloom Filter Size
+-- Variable Inner Input Size
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID > 1000 AND S.ID <= 2000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID > 1000 AND S.ID <= 4000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID > 1000 AND S.ID <= 6000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID > 1000 AND S.ID <= 8000;
+
+-- Fixed Inner Input Size
+-- Variable Bloom Filter Size
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID > 1000 AND S.ID <= 4000
+
+-- Fixed Inner Input Size
+-- Fixed Bloom Filter Size
+-- Variable Outer InputerSize
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID <= 2000 AND S.ID <= 1000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID <= 4000 AND S.ID <= 1000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID <= 6000 AND S.ID <= 1000;
+SELECT COUNT(*) FROM R,S WHERE R.ID = S.ID AND R.ID <= 8000 AND S.ID <= 1000;
+
+
+

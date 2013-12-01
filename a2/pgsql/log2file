@@ -1,0 +1,8 @@
+LOG:  database system was shut down at 2011-11-07 18:34:11 EST
+LOG:  checkpoint record is at 0/DF9FC8
+LOG:  redo record is at 0/DF9FC8; undo record is at 0/0; shutdown TRUE
+LOG:  next transaction ID: 21944; next OID: 41718
+LOG:  database system is ready
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

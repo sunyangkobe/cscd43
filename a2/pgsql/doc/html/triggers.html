@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Triggers</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REV="MADE"
+HREF="mailto:pgsql-docs@postgresql.org"><LINK
+REL="HOME"
+TITLE="PostgreSQL 7.4.13 Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Server Programming"
+HREF="server-programming.html"><LINK
+REL="PREVIOUS"
+TITLE="Rules versus Triggers"
+HREF="rules-triggers.html"><LINK
+REL="NEXT"
+TITLE="Visibility of Data Changes"
+HREF="trigger-datachanges.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-05-22T03:51:55"></HEAD
+><BODY
+CLASS="CHAPTER"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="5"
+ALIGN="center"
+VALIGN="bottom"
+>PostgreSQL 7.4.13 Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rules-triggers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rules.html"
+>Fast Backward</A
+></TD
+><TD
+WIDTH="60%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="xplang.html"
+>Fast Forward</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="trigger-datachanges.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="TRIGGERS"
+></A
+>Chapter 35. Triggers</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>35.1. <A
+HREF="triggers.html#TRIGGER-DEFINITION"
+>Overview of Trigger Behavior</A
+></DT
+><DT
+>35.2. <A
+HREF="trigger-datachanges.html"
+>Visibility of Data Changes</A
+></DT
+><DT
+>35.3. <A
+HREF="trigger-interface.html"
+>Writing Trigger Functions in C</A
+></DT
+><DT
+>35.4. <A
+HREF="trigger-example.html"
+>A Complete Example</A
+></DT
+></DL
+></DIV
+><A
+NAME="AEN31084"
+></A
+><P
+>   This chapter describes how to write trigger functions.  Trigger
+   functions can be written in C or in some of the available procedural
+   languages.  It is not currently possible to write a SQL-language
+   trigger function.
+  </P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="TRIGGER-DEFINITION"
+>35.1. Overview of Trigger Behavior</A
+></H1
+><P
+>    A trigger can be defined to execute before or after an
+    <TT
+CLASS="COMMAND"
+>INSERT</TT
+>, <TT
+CLASS="COMMAND"
+>UPDATE</TT
+>, or
+    <TT
+CLASS="COMMAND"
+>DELETE</TT
+> operation, either once per modified row,
+    or once per <ACRONYM
+CLASS="ACRONYM"
+>SQL</ACRONYM
+> statement.
+    If a trigger event occurs, the trigger's function is called
+    at the appropriate time to handle the event.
+   </P
+><P
+>    The trigger function must be defined before the trigger itself can be
+    created.  The trigger function must be declared as a 
+    function taking no arguments and returning type <TT
+CLASS="LITERAL"
+>trigger</TT
+>.
+    (The trigger function receives its input through a specially-passed
+    <TT
+CLASS="STRUCTNAME"
+>TriggerData</TT
+> structure, not in the form of ordinary function
+    arguments.)
+   </P
+><P
+>    Once a suitable trigger function has been created, the trigger is
+    established with
+    <A
+HREF="sql-createtrigger.html"
+><I
+>CREATE TRIGGER</I
+></A
+>.
+    The same trigger function can be used for multiple triggers.
+   </P
+><P
+>    Trigger functions return a table row (a value of type
+    <TT
+CLASS="STRUCTNAME"
+>HeapTuple</TT
+>) to the calling executor.
+    A trigger fired before an operation has the following choices:
+
+    <P
+></P
+></P><UL
+><LI
+><P
+>       It can return a <TT
+CLASS="SYMBOL"
+>NULL</TT
+> pointer to skip the operation
+       for the current row (and so the row will not be
+       inserted/updated/deleted).
+      </P
+></LI
+><LI
+><P
+>       For <TT
+CLASS="COMMAND"
+>INSERT</TT
+> and <TT
+CLASS="COMMAND"
+>UPDATE</TT
+>
+       triggers only, the returned row becomes the row that will
+       be inserted or will replace the row being updated.  This
+       allows the trigger function to modify the row being inserted or
+       updated.
+      </P
+></LI
+></UL
+><P>
+
+    A before trigger that does not intend to cause either of these
+    behaviors must be careful to return as its result the same row that was
+    passed in (that is, the NEW row for <TT
+CLASS="COMMAND"
+>INSERT</TT
+> and
+    <TT
+CLASS="COMMAND"
+>UPDATE</TT
+> triggers, the OLD row for
+    <TT
+CLASS="COMMAND"
+>DELETE</TT
+> triggers).
+   </P
+><P
+>    The return
+    value is ignored for triggers fired after an operation, and so
+    they may as well return <TT
+CLASS="SYMBOL"
+>NULL</TT
+>.
+   </P
+><P
+>    If more than one trigger is defined for the same event on the same
+    relation, the triggers will be fired in alphabetical order by trigger
+    name.  In the case of before triggers, the possibly-modified row
+    returned by each trigger becomes the input to the next trigger.
+    If any before trigger returns a <TT
+CLASS="SYMBOL"
+>NULL</TT
+> pointer, the
+    operation is abandoned and subsequent triggers are not fired.
+   </P
+><P
+>    If a trigger function executes SQL commands then these
+    commands may fire triggers again. This is known as cascading
+    triggers.  There is no direct limitation on the number of cascade
+    levels.  It is possible for cascades to cause a recursive invocation
+    of the same trigger; for example, an <TT
+CLASS="COMMAND"
+>INSERT</TT
+>
+    trigger might execute a command that inserts an additional row
+    into the same table, causing the <TT
+CLASS="COMMAND"
+>INSERT</TT
+> trigger
+    to be fired again.  It is the trigger programmer's responsibility
+    to avoid infinite recursion in such scenarios.
+   </P
+><P
+>    When a trigger is being defined, arguments can be specified for
+    it.<A
+NAME="AEN31120"
+></A
+> The purpose of including arguments in the
+    trigger definition is to allow different triggers with similar
+    requirements to call the same function.  As an example, there
+    could be a generalized trigger function that takes as its
+    arguments two column names and puts the current user in one and
+    the current time stamp in the other.  Properly written, this
+    trigger function would be independent of the specific table it is
+    triggering on.  So the same function could be used for
+    <TT
+CLASS="COMMAND"
+>INSERT</TT
+> events on any table with suitable
+    columns, to automatically track creation of records in a
+    transaction table for example. It could also be used to track
+    last-update events if defined as an <TT
+CLASS="COMMAND"
+>UPDATE</TT
+>
+    trigger.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rules-triggers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="trigger-datachanges.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Rules versus Triggers</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="server-programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Visibility of Data Changes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

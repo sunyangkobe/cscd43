@@ -1,0 +1,45 @@
+
+POSTGRES backend interactive interface 
+$Revision: 1.375.2.5 $ $Date: 2005/12/14 17:07:00 $
+
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "1521"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "1059"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "1230"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "694"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "2996"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "1413"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "186"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "2211"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "2246"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+	 1: count = "940"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+backend> 

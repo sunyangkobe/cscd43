@@ -1,0 +1,7 @@
+cat a1/ScanQueries.sql | bin/postgres -B 80 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_80
+cat a1/ScanQueries.sql | bin/postgres -B 100 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_100
+cat a1/ScanQueries.sql | bin/postgres -B 120 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_120
+cat a1/ScanQueries.sql | bin/postgres -B 140 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_140
+cat a1/ScanQueries.sql | bin/postgres -B 160 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_160
+cat a1/ScanQueries.sql | bin/postgres -B 180 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_180
+cat a1/ScanQueries.sql | bin/postgres -B 200 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Scan_LRU_200

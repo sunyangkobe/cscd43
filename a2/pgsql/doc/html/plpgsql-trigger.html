@@ -1,0 +1,527 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Trigger Procedures</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REV="MADE"
+HREF="mailto:pgsql-docs@postgresql.org"><LINK
+REL="HOME"
+TITLE="PostgreSQL 7.4.13 Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="PL/pgSQL - SQL Procedural Language"
+HREF="plpgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="Errors and Messages"
+HREF="plpgsql-errors-and-messages.html"><LINK
+REL="NEXT"
+TITLE="Porting from Oracle PL/SQL"
+HREF="plpgsql-porting.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-05-22T03:51:55"></HEAD
+><BODY
+CLASS="SECT1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="5"
+ALIGN="center"
+VALIGN="bottom"
+>PostgreSQL 7.4.13 Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="plpgsql-errors-and-messages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="plpgsql.html"
+>Fast Backward</A
+></TD
+><TD
+WIDTH="60%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 37. <SPAN
+CLASS="APPLICATION"
+>PL/pgSQL</SPAN
+> - <ACRONYM
+CLASS="ACRONYM"
+>SQL</ACRONYM
+> Procedural Language</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="plpgsql.html"
+>Fast Forward</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="plpgsql-porting.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="PLPGSQL-TRIGGER"
+>37.10. Trigger Procedures</A
+></H1
+><A
+NAME="AEN32304"
+></A
+><P
+>        <SPAN
+CLASS="APPLICATION"
+>PL/pgSQL</SPAN
+> can be used to define trigger
+        procedures. A trigger procedure is created with the
+        <TT
+CLASS="COMMAND"
+>CREATE FUNCTION</TT
+> command, declaring it as a function with
+        no arguments and a return type of <TT
+CLASS="TYPE"
+>trigger</TT
+>.  Note that
+        the function must be declared with no arguments even if it expects
+        to receive arguments specified in <TT
+CLASS="COMMAND"
+>CREATE TRIGGER</TT
+> ---
+        trigger arguments are passed via <TT
+CLASS="VARNAME"
+>TG_ARGV</TT
+>, as described
+        below.
+  </P
+><P
+>   When a <SPAN
+CLASS="APPLICATION"
+>PL/pgSQL</SPAN
+> function is called as a
+   trigger, several special variables are created automatically in the 
+   top-level block. They are:
+   
+   <P
+></P
+></P><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="VARNAME"
+>NEW</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>RECORD</TT
+>; variable holding the new
+       database row for <TT
+CLASS="COMMAND"
+>INSERT</TT
+>/<TT
+CLASS="COMMAND"
+>UPDATE</TT
+> operations in row-level
+       triggers. This variable is null in statement-level triggers.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>OLD</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>RECORD</TT
+>; variable holding the old
+       database row for <TT
+CLASS="COMMAND"
+>UPDATE</TT
+>/<TT
+CLASS="COMMAND"
+>DELETE</TT
+> operations in row-level
+       triggers. This variable is null in statement-level triggers.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_NAME</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>name</TT
+>; variable that contains the name of the trigger actually
+       fired.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_WHEN</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>text</TT
+>; a string of either 
+              <TT
+CLASS="LITERAL"
+>BEFORE</TT
+> or <TT
+CLASS="LITERAL"
+>AFTER</TT
+> 
+              depending on the trigger's definition.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_LEVEL</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>text</TT
+>; a string of either
+       <TT
+CLASS="LITERAL"
+>ROW</TT
+> or <TT
+CLASS="LITERAL"
+>STATEMENT</TT
+>
+       depending on the trigger's definition.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_OP</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>text</TT
+>; a string of
+       <TT
+CLASS="LITERAL"
+>INSERT</TT
+>, <TT
+CLASS="LITERAL"
+>UPDATE</TT
+>, or
+       <TT
+CLASS="LITERAL"
+>DELETE</TT
+> telling for which operation the
+       trigger was fired.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_RELID</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>oid</TT
+>; the object ID of the table that caused the
+       trigger invocation.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_RELNAME</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>name</TT
+>; the name of the table that caused the trigger
+       invocation.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_NARGS</TT
+></DT
+><DD
+><P
+>       Data type <TT
+CLASS="TYPE"
+>integer</TT
+>; the number of arguments given to the trigger
+       procedure in the <TT
+CLASS="COMMAND"
+>CREATE TRIGGER</TT
+> statement.
+      </P
+></DD
+><DT
+><TT
+CLASS="VARNAME"
+>TG_ARGV[]</TT
+></DT
+><DD
+><P
+>       Data type array of <TT
+CLASS="TYPE"
+>text</TT
+>; the arguments from
+              the <TT
+CLASS="COMMAND"
+>CREATE TRIGGER</TT
+> statement.
+       The index counts from 0. Invalid
+       indices (less than 0 or greater than or equal to <TT
+CLASS="VARNAME"
+>tg_nargs</TT
+>) result in a null value.
+      </P
+></DD
+></DL
+></DIV
+><P>
+  </P
+><P
+>    A trigger function must return either null or a record/row value
+    having exactly the structure of the table the trigger was fired
+    for.
+   </P
+><P
+>    Row-level triggers fired <TT
+CLASS="LITERAL"
+>BEFORE</TT
+> may return null to signal the
+    trigger manager to skip the rest of the operation for this row
+    (i.e., subsequent triggers are not fired, and the
+    <TT
+CLASS="COMMAND"
+>INSERT</TT
+>/<TT
+CLASS="COMMAND"
+>UPDATE</TT
+>/<TT
+CLASS="COMMAND"
+>DELETE</TT
+> does not occur
+    for this row).  If a nonnull 
+    value is returned then the operation proceeds with that row value.
+    Returning a row value different from the original value
+    of <TT
+CLASS="VARNAME"
+>NEW</TT
+> alters the row that will be inserted or updated
+    (but has no direct effect in the <TT
+CLASS="COMMAND"
+>DELETE</TT
+> case).
+    To alter the row to be stored, it is possible to replace single values
+    directly in <TT
+CLASS="VARNAME"
+>NEW</TT
+> and return the modified <TT
+CLASS="VARNAME"
+>NEW</TT
+>,
+    or to build a complete new record/row to return.
+   </P
+><P
+>    The return value of a <TT
+CLASS="LITERAL"
+>BEFORE</TT
+> or <TT
+CLASS="LITERAL"
+>AFTER</TT
+>
+    statement-level trigger or an <TT
+CLASS="LITERAL"
+>AFTER</TT
+> row-level trigger is
+    always ignored; it may as well be null. However, any of these types of
+    triggers can still abort the entire operation by raising an error.
+   </P
+><P
+>    <A
+HREF="plpgsql-trigger.html#PLPGSQL-TRIGGER-EXAMPLE"
+>Example 37-1</A
+> shows an example of a
+    trigger procedure in <SPAN
+CLASS="APPLICATION"
+>PL/pgSQL</SPAN
+>.
+   </P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="PLPGSQL-TRIGGER-EXAMPLE"
+></A
+><P
+><B
+>Example 37-1. A <SPAN
+CLASS="APPLICATION"
+>PL/pgSQL</SPAN
+> Trigger Procedure</B
+></P
+><P
+>     This example trigger ensures that any time a row is inserted or updated
+     in the table, the current user name and time are stamped into the
+     row. And it checks that an employee's name is given and that the
+     salary is a positive value.
+    </P
+><PRE
+CLASS="PROGRAMLISTING"
+>CREATE TABLE emp (
+    empname text,
+    salary integer,
+    last_date timestamp,
+    last_user text
+);
+
+CREATE FUNCTION emp_stamp() RETURNS trigger AS '
+    BEGIN
+        -- Check that empname and salary are given
+        IF NEW.empname IS NULL THEN
+            RAISE EXCEPTION ''empname cannot be null'';
+        END IF;
+        IF NEW.salary IS NULL THEN
+            RAISE EXCEPTION ''% cannot have null salary'', NEW.empname;
+        END IF;
+
+        -- Who works for us when she must pay for it?
+        IF NEW.salary &lt; 0 THEN
+            RAISE EXCEPTION ''% cannot have a negative salary'', NEW.empname;
+        END IF;
+
+        -- Remember who changed the payroll when
+        NEW.last_date := ''now'';
+        NEW.last_user := current_user;
+        RETURN NEW;
+    END;
+' LANGUAGE plpgsql;
+
+CREATE TRIGGER emp_stamp BEFORE INSERT OR UPDATE ON emp
+    FOR EACH ROW EXECUTE PROCEDURE emp_stamp();</PRE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="plpgsql-errors-and-messages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="plpgsql-porting.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Errors and Messages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="plpgsql.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Porting from <SPAN
+CLASS="PRODUCTNAME"
+>Oracle</SPAN
+> PL/SQL</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

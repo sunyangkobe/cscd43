@@ -1,0 +1,465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>pg_result</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REV="MADE"
+HREF="mailto:pgsql-docs@postgresql.org"><LINK
+REL="HOME"
+TITLE="PostgreSQL 7.4.13 Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="pgtcl Command Reference"
+HREF="libpgtcl-ref.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_exec"
+HREF="pgtcl-pgexec.html"><LINK
+REL="NEXT"
+TITLE="pg_select"
+HREF="pgtcl-pgselect.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-05-22T03:51:55"></HEAD
+><BODY
+CLASS="REFENTRY"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="5"
+ALIGN="center"
+VALIGN="bottom"
+>PostgreSQL 7.4.13 Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pgtcl-pgexec.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pgtcl-pgexec.html"
+>Fast Backward</A
+></TD
+><TD
+WIDTH="60%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pgtcl-pgselect.html"
+>Fast Forward</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pgtcl-pgselect.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="PGTCL-PGRESULT"
+></A
+>pg_result</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN22566"
+></A
+><H2
+>Name</H2
+>pg_result&nbsp;--&nbsp;get information about a command result<A
+NAME="IX-PGTCL-PGRESULT-2"
+></A
+></DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN22571"
+></A
+><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+>pg_result <TT
+CLASS="PARAMETER"
+>resultHandle</TT
+> <TT
+CLASS="PARAMETER"
+>resultOption</TT
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22575"
+></A
+><H2
+>Description</H2
+><P
+>   <CODE
+CLASS="FUNCTION"
+>pg_result</CODE
+> returns information about a command
+   result created by a prior <CODE
+CLASS="FUNCTION"
+>pg_exec</CODE
+>.
+  </P
+><P
+>   You can keep a command result around for as long as you need it,
+   but when you are done with it, be sure to free it by executing
+   <CODE
+CLASS="FUNCTION"
+>pg_result -clear</CODE
+>.  Otherwise, you have a
+   memory leak, and <SPAN
+CLASS="APPLICATION"
+>pgtcl</SPAN
+> will eventually start
+   complaining that you have created too many command result objects.
+  </P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22583"
+></A
+><H2
+>Arguments</H2
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="PARAMETER"
+>resultHandle</TT
+></DT
+><DD
+><P
+>      The handle of the command result.
+     </P
+></DD
+><DT
+><TT
+CLASS="PARAMETER"
+>resultOption</TT
+></DT
+><DD
+><P
+>      One of the following options, specifying which piece of result
+      information to return:
+
+      <P
+></P
+></P><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><TT
+CLASS="OPTION"
+>-status</TT
+></DT
+><DD
+><P
+>          The status of the result.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-error</TT
+></DT
+><DD
+><P
+>          The error message, if the status indicates an error,
+          otherwise an empty string.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-conn</TT
+></DT
+><DD
+><P
+>          The connection that produced the result.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-oid</TT
+></DT
+><DD
+><P
+>          If the command was an <TT
+CLASS="COMMAND"
+>INSERT</TT
+>, the OID of
+          the inserted row, otherwise 0.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-numTuples</TT
+></DT
+><DD
+><P
+>          The number of rows (tuples) returned by the query.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-cmdTuples</TT
+></DT
+><DD
+><P
+>          The number of rows (tuples) affected by the command.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-numAttrs</TT
+></DT
+><DD
+><P
+>          The number of columns (attributes) in each row.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-assign <TT
+CLASS="PARAMETER"
+>arrayName</TT
+></TT
+></DT
+><DD
+><P
+>          Assign the results to an array, using subscripts of the form
+          <TT
+CLASS="LITERAL"
+>(rowNumber, columnName)</TT
+>.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-assignbyidx <TT
+CLASS="PARAMETER"
+>arrayName</TT
+> ?<SPAN
+CLASS="OPTIONAL"
+><TT
+CLASS="PARAMETER"
+>appendstr</TT
+></SPAN
+>?</TT
+></DT
+><DD
+><P
+>          Assign the results to an array using the values of the
+          first column and the names of the remaining column as keys.
+          If <TT
+CLASS="PARAMETER"
+>appendstr</TT
+> is given then it is appended to
+          each key.  In short, all but the first column of each row
+          are stored into the array, using subscripts of the form
+          <TT
+CLASS="LITERAL"
+>(firstColumnValue, columnNameAppendStr)</TT
+>.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-getTuple <TT
+CLASS="PARAMETER"
+>rowNumber</TT
+></TT
+></DT
+><DD
+><P
+>          Returns the columns of the indicated row in a list.  Row
+          numbers start at zero.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-tupleArray <TT
+CLASS="PARAMETER"
+>rowNumber</TT
+> <TT
+CLASS="PARAMETER"
+>arrayName</TT
+></TT
+></DT
+><DD
+><P
+>          Stores the columns of the row in array
+          <TT
+CLASS="PARAMETER"
+>arrayName</TT
+>, indexed by column names.
+          Row numbers start at zero.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-attributes</TT
+></DT
+><DD
+><P
+>          Returns a list of the names of the columns in the result.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-lAttributes</TT
+></DT
+><DD
+><P
+>          Returns a list of sublists, <TT
+CLASS="LITERAL"
+>{name typeOid
+          typeSize}</TT
+> for each column.
+         </P
+></DD
+><DT
+><TT
+CLASS="OPTION"
+>-clear</TT
+></DT
+><DD
+><P
+>          Clear the command result object.
+         </P
+></DD
+></DL
+></DIV
+><P>
+     </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22680"
+></A
+><H2
+>Return Value</H2
+><P
+>   The result depends on the selected option, as described above.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pgtcl-pgexec.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pgtcl-pgselect.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_exec</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="libpgtcl-ref.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_select</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

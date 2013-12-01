@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Environment Variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REV="MADE"
+HREF="mailto:pgsql-docs@postgresql.org"><LINK
+REL="HOME"
+TITLE="PostgreSQL 7.4.13 Documentation"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="libpq - C Library"
+HREF="libpq.html"><LINK
+REL="PREVIOUS"
+TITLE="Notice Processing"
+HREF="libpq-notice-processing.html"><LINK
+REL="NEXT"
+TITLE="The Password File"
+HREF="libpq-pgpass.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="stylesheet.css"><META
+NAME="creation"
+CONTENT="2006-05-22T03:51:55"></HEAD
+><BODY
+CLASS="SECT1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="5"
+ALIGN="center"
+VALIGN="bottom"
+>PostgreSQL 7.4.13 Documentation</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="libpq-notice-processing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="libpq.html"
+>Fast Backward</A
+></TD
+><TD
+WIDTH="60%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 27. <SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+> - C Library</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="libpq.html"
+>Fast Forward</A
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="libpq-pgpass.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="LIBPQ-ENVARS"
+>27.10. Environment Variables</A
+></H1
+><A
+NAME="AEN21797"
+></A
+><P
+>The following environment variables can be used to select default
+connection parameter values, which will be used by
+<CODE
+CLASS="FUNCTION"
+>PQconnectdb</CODE
+>, <CODE
+CLASS="FUNCTION"
+>PQsetdbLogin</CODE
+> and
+<CODE
+CLASS="FUNCTION"
+>PQsetdb</CODE
+> if no value is directly specified by the calling
+code.  These are useful to avoid hard-coding database connection
+information into simple client applications, for example.
+
+<P
+></P
+></P><UL
+><LI
+><P
+><A
+NAME="AEN21806"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGHOST</TT
+> sets the database server name.
+If this begins with a slash, it specifies Unix-domain communication
+rather than TCP/IP communication; the value is the name of the
+directory in which the socket file is stored (default <TT
+CLASS="FILENAME"
+>/tmp</TT
+>).</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21813"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGHOSTADDR</TT
+> specifies the numeric IP address of the database
+server.  This can be set instead of <TT
+CLASS="ENVAR"
+>PGHOST</TT
+> to avoid DNS
+lookup overhead. See the documentation of
+these parameters, under <CODE
+CLASS="FUNCTION"
+>PQconnectdb</CODE
+> above, for details
+on their interaction.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21821"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGPORT</TT
+> sets the TCP port number or Unix-domain
+socket file extension for communicating with the
+<SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> server.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21828"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGDATABASE</TT
+>  sets the 
+<SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> database name.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21835"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGUSER</TT
+>
+sets the user name used to connect to the database.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21841"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGPASSWORD</TT
+>
+sets the password used if the server demands password
+authentication.  This environment variable is deprecated for security
+reasons; consider migrating to use the <TT
+CLASS="FILENAME"
+>$HOME/.pgpass</TT
+>
+file (see <A
+HREF="libpq-pgpass.html"
+>Section 27.11</A
+>).</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21849"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGSERVICE</TT
+>
+sets the service name to be looked up in <TT
+CLASS="FILENAME"
+>pg_service.conf</TT
+>.
+This offers a shorthand way of setting all the parameters.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21856"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGREALM</TT
+> sets the Kerberos realm to  use  with  
+<SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+>, if  it is different from the local realm.
+If <TT
+CLASS="ENVAR"
+>PGREALM</TT
+> is set, <SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+>
+applications  will  attempt authentication  with  servers for this realm and use
+separate ticket files to avoid conflicts with  local
+ticket  files.   This  environment  variable is only
+used if Kerberos authentication is selected by the server.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21865"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGOPTIONS</TT
+> sets additional run-time  options  for  
+the <SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> server.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21872"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGSSLMODE</TT
+> determines whether and with what priority an
+<ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+> connection will be negotiated with the server. There are
+four modes: <TT
+CLASS="LITERAL"
+>disable</TT
+> will attempt only an unencrypted
+<ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+> connection; <TT
+CLASS="LITERAL"
+>allow</TT
+> will negotiate,
+trying first a non-<ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+> connection, then if that fails,
+trying an <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+> connection; <TT
+CLASS="LITERAL"
+>prefer</TT
+>
+(the default) will negotiate, trying first an <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+>
+connection, then if that fails, trying a regular non-<ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+>
+connection; <TT
+CLASS="LITERAL"
+>require</TT
+> will try only an <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+>
+connection. If <SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> is compiled without SSL support,
+using option <TT
+CLASS="LITERAL"
+>require</TT
+> will cause an error, and options
+<TT
+CLASS="LITERAL"
+>allow</TT
+> and <TT
+CLASS="LITERAL"
+>prefer</TT
+> will be tolerated but
+<SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+> will be unable to negotiate an <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+>
+connection.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21895"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGREQUIRESSL</TT
+> sets whether or not the connection must be
+made over <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+>. If set to
+<SPAN
+CLASS="QUOTE"
+>"1"</SPAN
+>, <SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+>
+will refuse to connect if the server does not accept
+an <ACRONYM
+CLASS="ACRONYM"
+>SSL</ACRONYM
+> connection (equivalent to <TT
+CLASS="LITERAL"
+>sslmode</TT
+>
+<TT
+CLASS="LITERAL"
+>prefer</TT
+>).
+This option is deprecated in favor of the <TT
+CLASS="LITERAL"
+>sslmode</TT
+>
+setting, and is only available if
+<SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> is compiled with SSL support.</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21909"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGCONNECT_TIMEOUT</TT
+> sets the maximum number of seconds
+that <SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+> will wait when attempting to
+connect to the <SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> server.  If unset
+or set to zero, <SPAN
+CLASS="APPLICATION"
+>libpq</SPAN
+> will wait indefinitely.
+It is not recommended to set the timeout to less than 2 seconds.</P
+></LI
+></UL
+><P></P
+><P
+>The following environment variables can be used to specify default
+behavior for each <SPAN
+CLASS="PRODUCTNAME"
+>PostgreSQL</SPAN
+> session.
+(See also the <TT
+CLASS="COMMAND"
+>ALTER USER</TT
+> and <TT
+CLASS="COMMAND"
+>ALTER DATABASE</TT
+>
+commands for ways to set default behavior on a per-user or per-database
+basis.)
+
+<P
+></P
+></P><UL
+><LI
+><P
+><A
+NAME="AEN21923"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGDATESTYLE</TT
+>
+sets the default style of date/time representation.
+(Equivalent to <TT
+CLASS="LITERAL"
+>SET datestyle TO ...</TT
+>.)</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21930"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGTZ</TT
+>
+sets the default time zone.
+(Equivalent to <TT
+CLASS="LITERAL"
+>SET timezone TO ...</TT
+>.)</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21937"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGCLIENTENCODING</TT
+>
+sets the default client character set encoding.
+(Equivalent to <TT
+CLASS="LITERAL"
+>SET client_encoding TO ...</TT
+>.)</P
+></LI
+><LI
+><P
+><A
+NAME="AEN21944"
+></A
+>
+<TT
+CLASS="ENVAR"
+>PGGEQO</TT
+>
+sets the default mode for the genetic query optimizer.
+(Equivalent to <TT
+CLASS="LITERAL"
+>SET geqo TO ...</TT
+>.)</P
+></LI
+></UL
+><P>
+
+Refer to the <ACRONYM
+CLASS="ACRONYM"
+>SQL</ACRONYM
+> command <TT
+CLASS="COMMAND"
+>SET</TT
+>
+for information on correct values for these environment variables.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="libpq-notice-processing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="libpq-pgpass.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Notice Processing</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="libpq.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The Password File</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,10 @@
+cat a1/IndexScanQueries.sql | bin/postgres -B 20 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_20
+cat a1/IndexScanQueries.sql | bin/postgres -B 40 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_40
+cat a1/IndexScanQueries.sql | bin/postgres -B 60 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_60
+cat a1/IndexScanQueries.sql | bin/postgres -B 80 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_80
+cat a1/IndexScanQueries.sql | bin/postgres -B 100 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_100
+cat a1/IndexScanQueries.sql | bin/postgres -B 120 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_120
+cat a1/IndexScanQueries.sql | bin/postgres -B 140 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_140
+cat a1/IndexScanQueries.sql | bin/postgres -B 160 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_160
+cat a1/IndexScanQueries.sql | bin/postgres -B 180 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_180
+cat a1/IndexScanQueries.sql | bin/postgres -B 200 -D data/ -d 1 -s a1 2>&1 | grep "Shared blocks" > result_Index_MRU_200

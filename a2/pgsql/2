@@ -1,0 +1,257 @@
+
+POSTGRES backend interactive interface 
+$Revision: 1.375.2.5 $ $Date: 2005/12/14 17:07:00 $
+
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "6277"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 6510
++++True Positives: 6277
++++False Positives: 233
++++True Negatives: 1987
++++Total Dropped: 2220
++++False Positive Rate: 233/2220
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "3363"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 3384
++++True Positives: 3363
++++False Positives: 21
++++True Negatives: 2555
++++Total Dropped: 2576
++++False Positive Rate: 21/2576
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "0"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 13
++++True Positives: 0
++++False Positives: 13
++++True Negatives: 7906
++++Total Dropped: 7919
++++False Positive Rate: 13/7919
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "0"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 79
++++True Positives: 0
++++False Positives: 79
++++True Negatives: 6789
++++Total Dropped: 6868
++++False Positive Rate: 79/6868
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "192"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 192
++++True Positives: 192
++++False Positives: 0
++++True Negatives: 7835
++++Total Dropped: 7835
++++False Positive Rate: 0/7835
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "3143"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 3143
++++True Positives: 3143
++++False Positives: 0
++++True Negatives: 0
++++Total Dropped: 0
++++False Positive Rate: 0/0
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "0"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 6
++++True Positives: 0
++++False Positives: 6
++++True Negatives: 6135
++++Total Dropped: 6141
++++False Positive Rate: 6/6141
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "0"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 212
++++True Positives: 0
++++False Positives: 212
++++True Negatives: 1642
++++Total Dropped: 1854
++++False Positive Rate: 212/1854
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "3307"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 3307
++++True Positives: 3307
++++False Positives: 0
++++True Negatives: 0
++++Total Dropped: 0
++++False Positive Rate: 0/0
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "2368"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 2368
++++True Positives: 2368
++++False Positives: 0
++++True Negatives: 0
++++Total Dropped: 0
++++False Positive Rate: 0/0
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "9326"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 9462
++++True Positives: 9326
++++False Positives: 136
++++True Negatives: 256
++++Total Dropped: 392
++++False Positive Rate: 136/392
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "5546"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 5655
++++True Positives: 5546
++++False Positives: 109
++++True Negatives: 1816
++++Total Dropped: 1925
++++False Positive Rate: 109/1925
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "1485"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 1847
++++True Positives: 1485
++++False Positives: 362
++++True Negatives: 4285
++++Total Dropped: 4647
++++False Positive Rate: 362/4647
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "7033"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 7688
++++True Positives: 7033
++++False Positives: 655
++++True Negatives: 1478
++++Total Dropped: 2133
++++False Positive Rate: 655/2133
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "1653"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 1653
++++True Positives: 1653
++++False Positives: 0
++++True Negatives: 0
++++Total Dropped: 0
++++False Positive Rate: 0/0
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "2732"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 2868
++++True Positives: 2732
++++False Positives: 136
++++True Negatives: 333
++++Total Dropped: 469
++++False Positive Rate: 136/469
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "3657"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 3687
++++True Positives: 3657
++++False Positives: 30
++++True Negatives: 1710
++++Total Dropped: 1740
++++False Positive Rate: 30/1740
++++
+backend> 	 1: count	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
+KOBE: 2095
+	 1: count = "825"	(typeid = 20, len = 8, typmod = -1, byval = f)
+	----
++++
++++Bloom Filter Passes:
++++Total Positives: 915
++++True Positives: 825
++++False Positives: 90
++++True Negatives: 6888
++++Total Dropped: 6978
++++False Positive Rate: 90/6978
++++
+backend> 

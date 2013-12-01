@@ -1,0 +1,17 @@
+
+POSTGRES backend interactive interface 
+$Revision: 1.375.2.5 $ $Date: 2005/12/14 17:07:00 $
+
+backend> 	 1: QUERY PLAN	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+	 1: QUERY PLAN = "Hash Join  (cost=22.50..60.00 rows=1000 width=32)"	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+	 1: QUERY PLAN = "  Hash Cond: ("outer".id = "inner".id)"	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+	 1: QUERY PLAN = "  ->  Seq Scan on r  (cost=0.00..20.00 rows=1000 width=16)"	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+	 1: QUERY PLAN = "  ->  Hash  (cost=20.00..20.00 rows=1000 width=16)"	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+	 1: QUERY PLAN = "        ->  Seq Scan on s  (cost=0.00..20.00 rows=1000 width=16)"	(typeid = 25, len = -1, typmod = -1, byval = f)
+	----
+backend> 

@@ -1,0 +1,145 @@
+Script started on Tue 27 Sep 2011 06:15:27 PM EDT
+]0;kobe@ubuntu: ~/workspace/pgsqlkobe@ubuntu:~/workspace/pgsql$ rlogin sunyang1@mathlab.utsc.utoronto.ca[9Pmathlab.utsc.utoronto.caexit[Krlogin mathlab.utsc.utoronto.casunyang1@mathlab.utsc.utoronto.ca[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Krlogin sunyang1@mathlab.utsc.utoronto.ca[9Pmathlab.utsc.utoronto.caexit[Krlogin sunyang1@mathlab.utsc.utoronto.camathlab.utsc.utoronto.ca -U sunyang1[Kexit[Kcd a1vi pgshell [1P./[C[C[C[C[C[C[C[Cpwd[K./pgshell [5Pcd ..[3Plscd a1./pgshelltartls[Kcd pgsql/ls[Kcd workspace/ls[Kexitvi pgstart[2P./pgstop[K[K[K[K[K[K[K[Kcat a1/IndexScanQueries.sql | bin/postgres -B 20 -D data -d 1 -s a1 | grep 'buffer hit rate'
+LOG:  database system was shut down at 2011-09-27 18:15:11 EDT
+LOG:  checkpoint record is at 0/AE1E70
+LOG:  redo record is at 0/AE1E70; undo record is at 0/0; shutdown TRUE
+LOG:  next transaction ID: 852; next OID: 22147
+LOG:  database system is ready
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.004656 elapsed 0.000000 user 0.000000 system sec
+	!	[0.000000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/197 [0/1099] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/2] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:        224 read,          0 written, buffer hit rate = 14.18%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000358 elapsed 0.000000 user 0.000000 system sec
+	!	[0.000000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1106] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/2] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          3 read,          0 written, buffer hit rate = 81.25%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000292 elapsed 0.000000 user 0.000000 system sec
+	!	[0.000000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1107] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/2] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 66.67%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000295 elapsed 0.000000 user 0.000000 system sec
+	!	[0.000000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1107] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/2] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 77.78%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000335 elapsed 0.000000 user 0.000000 system sec
+	!	[0.000000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/4 [0/1111] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/2] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 80.00%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000107 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 75.00%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000100 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 87.50%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000100 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 71.43%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000094 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          3 read,          0 written, buffer hit rate = 40.00%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000098 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          2 read,          0 written, buffer hit rate = 50.00%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  QUERY STATISTICS
+DETAIL:  ! system usage stats:
+	!	0.000013 elapsed 0.000000 user 0.000000 system sec
+	!	[0.010000 user 0.000000 sys total]
+	!	0/0 [0/16] filesystem blocks in/out
+	!	0/0 [0/1112] page faults/reclaims, 0 [0] swaps
+	!	0 [0] signals rcvd, 0/0 [0/0] messages rcvd/sent
+	!	0/0 [2/3] voluntary/involuntary context switches
+	! buffer usage stats:
+	!	Shared blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Local  blocks:          0 read,          0 written, buffer hit rate = 0.00%
+	!	Direct blocks:          0 read,          0 written
+LOG:  shutting down
+LOG:  database system is shut down
+]0;kobe@ubuntu: ~/workspace/pgsqlkobe@ubuntu:~/workspace/pgsql$ stop[K[K[K[Kexit
+exit
+
+Script done on Tue 27 Sep 2011 06:15:50 PM EDT
